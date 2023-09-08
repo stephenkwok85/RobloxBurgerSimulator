@@ -1,0 +1,48 @@
+task.wait()
+
+local shopButton = script.Parent
+
+
+local shopCatalog = script.Parent.Parent:WaitForChild("ItemCatalog")
+local shopBack =  script.Parent.Parent:WaitForChild("ShopBack")
+local shopLabel = script.Parent.Parent:WaitForChild("ShopLabel")
+local closeButton = script.Parent.Parent:WaitForChild("CloseButton")
+local menu = script.Parent.Parent.Parent.Menu.MenuFrame
+
+
+
+local players = game.Players:GetPlayers()
+ 
+for _, v in pairs(players) do
+
+	local menuOpened = Instance.new("BoolValue")
+	menuOpened.Name = "IsOpen"
+	menuOpened.Parent = v
+
+	while v:FindFirstChild("IsOpen") do
+		if menu.Visible == false and v:FindFirstChild("IsOpen") then
+			v:FindFirstChild("IsOpen"):Destroy()
+		elseif v:FindFirstChild("IsOpen") then
+			shopButton.Visible = true
+		end
+		task.wait(1)
+	end
+	task.wait(1)
+end
+
+
+shopButton.MouseButton1Up:Connect(function()
+	shopCatalog.Visible = true
+	shopBack.Visible = true
+	shopLabel.Visible = true
+	closeButton.Visible = true
+	
+end)
+
+closeButton.MouseButton1Up:Connect(function()
+	shopCatalog.Visible = false
+	shopBack.Visible = false
+	shopLabel.Visible = false
+	closeButton.Visible = false
+end)
+
