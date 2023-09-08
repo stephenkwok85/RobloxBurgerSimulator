@@ -7,4 +7,5 @@ Instructions/Description for the game:
 - Never-ending game
 
 Coding language: LUA
+
 PROGRESS: UNFINISHED/IN PROGRESS!
