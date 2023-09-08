@@ -1,0 +1,47 @@
+task.wait(1)
+
+local player = game.Players.LocalPlayer
+local leaderstats = player:WaitForChild("leaderstats")
+
+local saturation = leaderstats:WaitForChild("Saturation")
+local fp = leaderstats:WaitForChild("FP")
+
+local quest = script.Parent.Parent
+local missionLabel = quest.MissionLabel
+
+local progressFrame =  script.Parent
+local progressBar = progressFrame.Bar
+local percentage = progressFrame.Percent
+
+-- first quest for everyone
+local max = 50
+missionLabel.Text = "QUEST: Gain " .. max .. " Saturation"
+
+progressBar:TweenSize(UDim2.new(saturation.Value/max, 0, progressBar.Size.Y.Scale, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Sine, 0.1, false)
+percentage.Text = saturation.Value .. " / " .. max 
+
+
+local questEnd = game.ReplicatedStorage.QuestComplete
+local random = math.random(1,2) -- Options for quests (2 for now, just gain and collect)
+
+
+saturation.Changed:Connect(function(NewSaturation)
+	
+	if NewSaturation >= max then
+		
+		NewSaturation = 0
+		
+		local newQuestValue = math.random(saturation.Value + 100, saturation.Value + 200)
+		max = math.round(newQuestValue)
+		random = math.random(1,2)
+			
+		missionLabel.Text = "QUEST: Gain " .. max .. " Saturation"
+		percentage.Text = "0 / " .. max
+	else
+		
+		progressBar:TweenSize(UDim2.new(NewSaturation/max, 0, progressBar.Size.Y.Scale, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Sine, 0.1, false)
+		
+		percentage.Text = NewSaturation .. " / " .. max 	
+		
+	end
+end)
