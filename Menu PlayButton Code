@@ -1,0 +1,7 @@
+local playButton = script.Parent
+local menuFrame = script.Parent.Parent.Parent.Parent.Parent
+
+
+playButton.MouseButton1Up:Connect(function()
+	menuFrame.Visible = false
+end)
