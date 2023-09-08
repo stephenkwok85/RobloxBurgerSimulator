@@ -1,0 +1,14 @@
+local questUpRemote = game.ReplicatedStorage.QuestComplete
+
+questUpRemote.OnServerEvent:Connect(function(player)
+	
+	local saturation = player.leaderstats.Saturation
+	local fp = player.leaderstats.FP
+	
+	
+	saturation.Value += 50
+	 
+	fp.Value += 5	
+	
+	
+end)
