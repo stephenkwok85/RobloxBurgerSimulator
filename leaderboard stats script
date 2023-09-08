@@ -1,0 +1,28 @@
+task.wait()
+
+game.Players.PlayerAdded:Connect(function(player)
+	local leaderstats = Instance.new("Folder")
+	leaderstats.Name = "leaderstats"
+	leaderstats.Parent = player
+	
+	local currency = Instance.new("IntValue") -- To buy items from the Shop/Powerups in areas
+	currency.Parent = leaderstats
+	currency.Name = "FP"
+	currency.Value = 0
+	
+	local foodEaten = Instance.new("IntValue") -- basic stat
+	foodEaten.Parent = leaderstats
+	foodEaten.Name = "Saturation"
+	foodEaten.Value = 0
+	
+	local rebirths = Instance.new("IntValue")
+	rebirths.Parent = leaderstats
+	rebirths.Name = "Rebirths"
+	rebirths.Value = 0
+	 
+	
+end)
+
+
+
+ 
